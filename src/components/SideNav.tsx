@@ -14,9 +14,11 @@ export default function SideNav() {
             </Link>
           </li>
           <li>
-            <Button className="w-full" variant="outline">
-              Liked Cards
-            </Button>
+            <Link href={"/?card-group=liked"}>
+              <Button className="w-full" variant="outline">
+                Liked Cards
+              </Button>
+            </Link>
           </li>
           <li>
             <Link href={"/card-groups"}>
@@ -27,9 +29,11 @@ export default function SideNav() {
           </li>
 
           <li>
-            <Button className="w-full" variant="outline">
-              Saved Cards
-            </Button>
+            <Link href={"/?card-group=saved"}>
+              <Button className="w-full" variant="outline">
+                Saved Cards
+              </Button>
+            </Link>
           </li>
         </ul>
       </div>

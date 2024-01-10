@@ -3,6 +3,7 @@ import {
   getLanguageCards,
   getLanguageCardById,
   getLanguageCardsId,
+  getCardSets,
 } from "./api";
 
 export const useLanguageCards = () => {
@@ -37,6 +38,14 @@ export const useLanguageCardById = (id: number) => {
   return useQuery({
     queryKey: ["language-cards", { id }],
     queryFn: () => getLanguageCardById(id),
+    refetchOnWindowFocus: false,
+  });
+};
+
+export const useLanguageCardSets = () => {
+  return useQuery({
+    queryKey: ["card-sets"],
+    queryFn: () => getCardSets(),
     refetchOnWindowFocus: false,
   });
 };

@@ -1,12 +1,18 @@
 "use client";
 
-import { languageCard } from "@/types/api";
+import { cardSet, languageCard } from "@/types/api";
 import Card from "./Card";
 import { Button } from "./ui/button";
-import { useLanguageCards } from "@/services/queries";
+import {
+  useLanguageCards,
+  useLanguageCardsById,
+  useLanguageCardsIds,
+} from "@/services/queries";
 import { create } from "zustand";
 import AddCard from "../components/AddCard";
 import CardSkeleton from "./CardSkeleton";
+import { getLanguageCardById } from "@/services/api";
+import { useSearchParams } from "next/navigation";
 
 interface cardState {
   currentCount: number;
@@ -32,13 +38,34 @@ const useStore = create<cardState>((set) => ({
     }),
 }));
 
-export default function CardSet() {
-  const { data, error, isLoading, isSuccess } = useLanguageCards();
+export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
+  const {
+    data: languageCardsRawData,
+    error,
+    isLoading,
+    isSuccess,
+  } = useLanguageCards();
 
-  const likedCards = data?.filter((card) => card.liked == true);
-  const savedCards = data?.filter((card) => card.saved == true);
+  const likedCards = languageCardsRawData?.filter((card) => card.liked == true);
+  const savedCards = languageCardsRawData?.filter((card) => card.saved == true);
+  const cardGroups = languageCardsRawData?.filter(
+    (card) => card.set_name === cardGroupName
+  );
 
-  console.log(likedCards, savedCards);
+  console.log(cardGroupName);
+
+  const params = useSearchParams();
+
+  const cardGroup = params.get("card-group");
+
+  const data =
+    cardGroup === "liked"
+      ? likedCards
+      : cardGroup === "saved"
+      ? savedCards
+      : cardGroupName
+      ? cardGroups
+      : languageCardsRawData;
 
   const { currentCount, prev, next } = useStore();
 

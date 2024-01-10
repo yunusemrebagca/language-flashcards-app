@@ -1,5 +1,5 @@
 import axios from "axios";
-import { languageCard } from "../types/api";
+import { cardSet, languageCard } from "../types/api";
 
 const BASE_URL = "https://localhost:3000/api";
 
@@ -23,7 +23,7 @@ export const getLanguageCardsId = async () => {
 
 export const getLanguageCardById = async (id: number) => {
   const response = await axiosInstance
-    .get<languageCard>(`/language-cards/${id}`)
+    .get<languageCard[]>(`/language-cards/${id}`)
     .then((data) => data.data);
   return response;
 };
@@ -38,4 +38,11 @@ export const setLiked = async (data: { id: number; liked: boolean }) => {
   const response = await axiosInstance.put(`/language-cards/${data.id}/liked`, {
     liked: data.liked,
   });
+};
+
+export const getCardSets = async () => {
+  const response = await axiosInstance
+    .get<cardSet[]>(`/language-cards/card-groups`)
+    .then((data) => data.data);
+  return response;
 };
