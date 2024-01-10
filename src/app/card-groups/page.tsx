@@ -5,7 +5,7 @@ import { useLanguageCardSets } from "@/services/queries";
 import CardGroup from "@/components/CardGroup";
 import { useSearchParams } from "next/navigation";
 import CardSet from "@/components/CardSet";
-export default function page() {
+export default function Page() {
   const cardSets = useLanguageCardSets().data;
   const params = useSearchParams().get("card-group");
   const isSearchParamEmpty = !params || params.trim() === "";
