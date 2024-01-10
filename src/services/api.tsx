@@ -46,3 +46,11 @@ export const getCardSets = async () => {
     .then((data) => data.data);
   return response;
 };
+
+export const addCard = async (data: {
+  word: string;
+  description: string;
+  set: string;
+}) => {
+  const response = await axiosInstance.post(`/language-cards/add-card`, data);
+};

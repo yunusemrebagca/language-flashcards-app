@@ -71,18 +71,22 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
 
   return (
     <>
-      <h1 className="text-4xl font-bold mb-8 ">Language Flashcards</h1>
-      <div className="flex flex-col gap-4 items-center justify-between w-full max-w-sm mt-8">
+      <h1 className="text-3xl font-bold mb-4 ">
+        {data === languageCardsRawData ? "All Flashcards" : cardGroup}
+      </h1>
+      <div className="flex flex-col gap-4 items-center justify-between w-full max-w-sm mt-4">
         {data ? <Card cardData={data[currentCount]} /> : <CardSkeleton />}
 
-        <div className="flex justify-evenly mt-8 w-full">
+        <div className="flex justify-evenly mt-4 w-full">
           <Button
             variant="outline"
             onClick={() => prev(data ? data.length : 0)}
           >
             Previous
           </Button>
-          <AddCard />
+          {cardGroupName && cardGroup ? (
+            <AddCard cardGroup={cardGroup} />
+          ) : null}
           <Button
             variant="outline"
             onClick={() => next(data ? data.length : 0)}
