@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 export default function SideNav() {
   return (
-    <aside className="w-64 bg-white flex flex-col justify-between dark:bg-gray-800 p-8">
+    <aside className="w-64 bg-white flex flex-col justify-between  dark:bg-gray-800 p-8">
       <div>
         <h2 className="text-2xl font-bold mb-4">Menu</h2>
         <ul className="space-y-4">
@@ -14,16 +14,16 @@ export default function SideNav() {
             </Link>
           </li>
           <li>
-            <Link href={"/?card-group=liked"}>
+            <Link href={"/card-groups"}>
               <Button className="w-full" variant="outline">
-                Liked Cards
+                Card Groups
               </Button>
             </Link>
           </li>
           <li>
-            <Link href={"/card-groups"}>
+            <Link href={"/?card-group=liked"}>
               <Button className="w-full" variant="outline">
-                Card Groups
+                Liked Cards
               </Button>
             </Link>
           </li>

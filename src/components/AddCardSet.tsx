@@ -54,7 +54,7 @@ export default function AddCard() {
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label className="text-right" htmlFor="frontSide">
-                Front Side
+                Set Name
               </Label>
               <Input
                 className="col-span-3"
@@ -66,7 +66,7 @@ export default function AddCard() {
           </div>
           <DialogFooter>
             <Button type="submit" disabled={isPending}>
-              Add Flashcard
+              Add Card Set
             </Button>
             <DialogClose asChild>
               <div>

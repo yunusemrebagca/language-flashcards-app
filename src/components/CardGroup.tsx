@@ -25,6 +25,7 @@ export default function CardGroup({ cardSet }: { cardSet: cardSet }) {
               }
               variant="destructive"
               className="w-full"
+              disabled={useDeleteCardSetMutation.isPending}
             >
               Delete Group
             </Button>
