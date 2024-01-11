@@ -4,6 +4,7 @@ import { cardSet, languageCard } from "@/types/api";
 import Card from "./Card";
 import { Button } from "./ui/button";
 import {
+  useLanguageCardSets,
   useLanguageCards,
   useLanguageCardsById,
   useLanguageCardsIds,
@@ -13,6 +14,7 @@ import AddCard from "../components/AddCard";
 import CardSkeleton from "./CardSkeleton";
 import { getLanguageCardById } from "@/services/api";
 import { useSearchParams } from "next/navigation";
+import parameterize from "parameterize-js";
 
 interface cardState {
   currentCount: number;
@@ -67,13 +69,25 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
       ? cardGroups
       : languageCardsRawData;
 
+  const languageCardSets = useLanguageCardSets().data;
+  const cardSet = languageCardSets?.filter(
+    (cardSet) => cardSet.card_set === cardGroupName
+  );
+
+  const setName =
+    cardGroup === "liked"
+      ? "Liked Cards"
+      : cardGroup === "saved"
+      ? "Saved Cards"
+      : cardSet && cardSet[0] && cardSet[0].card_set_name
+      ? cardSet[0].card_set_name
+      : "All Flashcards";
+
   const { currentCount, prev, next } = useCardStore();
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4 ">
-        {data === languageCardsRawData ? "All Flashcards" : cardGroup}
-      </h1>
+      <h1 className="text-3xl font-bold mb-4 ">{setName}</h1>
       <div className="flex flex-col gap-4 items-center justify-between w-full max-w-sm mt-4">
         {data && data[currentCount] ? (
           <Card cardData={data[currentCount]} setLength={data.length} />

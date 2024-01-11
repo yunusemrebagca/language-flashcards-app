@@ -10,5 +10,6 @@ export type languageCard = {
 export type cardSet = {
   id: number;
   card_set: string;
+  card_set_name: string;
   created_at?: Date;
 };

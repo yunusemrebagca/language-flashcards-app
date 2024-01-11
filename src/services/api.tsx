@@ -58,3 +58,19 @@ export const addCard = async (data: {
 export const deleteCard = async (id: number) => {
   const response = await axiosInstance.delete(`/language-cards/${id}/delete`);
 };
+
+export const addCardSet = async (data: {
+  card_set: string;
+  card_set_name: string;
+}) => {
+  const response = await axiosInstance.post(
+    `/language-cards/card-groups`,
+    data
+  );
+};
+
+export const deleteCardSet = async (id: number) => {
+  const response = await axiosInstance.delete(
+    `/language-cards/card-groups/${id}`
+  );
+};
