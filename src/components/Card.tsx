@@ -2,18 +2,25 @@ import { languageCard } from "@/types/api";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { useAddSaved, useAddLiked } from "@/services/mutations";
+import { useAddSaved, useAddLiked, useDeleteCard } from "@/services/mutations";
+import { useCardStore } from "../components/CardSet";
 
-export default function Card({ cardData }: { cardData: languageCard }) {
+export default function Card({
+  cardData,
+  setLength,
+}: {
+  cardData: languageCard;
+  setLength: number;
+}) {
   const [isFlipped, setIsFlipped] = useState(true);
 
   const useAddSavedMutation = useAddSaved();
 
   const useAddLikedMutation = useAddLiked();
 
-  const { variables: variablesSaved } = useAddSavedMutation;
+  const useDeleteCardMutation = useDeleteCard();
 
-  const { variables: variablesLiked } = useAddLikedMutation;
+  const { setCurrentCount } = useCardStore();
 
   return (
     <div className="group h-64 w-full [perspective:1000px]">
@@ -59,6 +66,19 @@ export default function Card({ cardData }: { cardData: languageCard }) {
               >
                 {cardData.liked ? "Liked" : "Like"}
               </Button>
+              <Button
+                onClick={() => {
+                  if (setLength > 2) {
+                    setCurrentCount(setLength - 2);
+                  } else {
+                    setCurrentCount(0);
+                  }
+                  useDeleteCardMutation.mutate(cardData.id);
+                }}
+                disabled={useDeleteCardMutation.isPending}
+              >
+                Delete
+              </Button>
             </div>
           </div>
         </div>
@@ -98,6 +118,19 @@ export default function Card({ cardData }: { cardData: languageCard }) {
                 variant={cardData.liked ? "destructive" : "outline"}
               >
                 {cardData.liked ? "Liked" : "Like"}
+              </Button>
+              <Button
+                onClick={() => {
+                  if (setLength > 2) {
+                    setCurrentCount(setLength - 2);
+                  } else {
+                    setCurrentCount(0);
+                  }
+                  useDeleteCardMutation.mutate(cardData.id);
+                }}
+                disabled={useDeleteCardMutation.isPending}
+              >
+                Delete
               </Button>
             </div>
           </div>

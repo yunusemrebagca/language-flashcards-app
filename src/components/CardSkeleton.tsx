@@ -18,9 +18,7 @@ export default function CardSkeleton() {
               </h2>
             </div>
             <div className="flex items-center justify-center space-x-4">
-              <Button variant="outline">Reveal</Button>
-              <Button variant={"outline"}>Loading</Button>
-              <Button variant={"outline"}>Loading</Button>
+              <Button variant="outline">Loading...</Button>
             </div>
           </div>
         </div>

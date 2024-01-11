@@ -18,10 +18,12 @@ interface cardState {
   currentCount: number;
   next: (length: number) => void;
   prev: (length: number) => void;
+  setCurrentCount: (count: number) => void;
 }
 
-const useStore = create<cardState>((set) => ({
+export const useCardStore = create<cardState>((set) => ({
   currentCount: 0,
+  setCurrentCount: (count) => set({ currentCount: count }),
   next: (length) =>
     set((state) => {
       if (state.currentCount === length - 1) {
@@ -52,8 +54,6 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
     (card) => card.set_name === cardGroupName
   );
 
-  console.log(cardGroupName);
-
   const params = useSearchParams();
 
   const cardGroup = params.get("card-group");
@@ -67,7 +67,7 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
       ? cardGroups
       : languageCardsRawData;
 
-  const { currentCount, prev, next } = useStore();
+  const { currentCount, prev, next } = useCardStore();
 
   return (
     <>
@@ -75,7 +75,30 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
         {data === languageCardsRawData ? "All Flashcards" : cardGroup}
       </h1>
       <div className="flex flex-col gap-4 items-center justify-between w-full max-w-sm mt-4">
-        {data ? <Card cardData={data[currentCount]} /> : <CardSkeleton />}
+        {data && data[currentCount] ? (
+          <Card cardData={data[currentCount]} setLength={data.length} />
+        ) : (
+          <>
+            <CardSkeleton />{" "}
+            {data && data.length === 0 && (
+              <>
+                <h4 className="text-red-400 text-xl">
+                  There is no card remaining.
+                </h4>
+                {cardGroupName ? (
+                  <p className="text-black text-center">
+                    You can add new card from below button.
+                  </p>
+                ) : (
+                  <p className="text-black text-center">
+                    You can create new group from the Card Groups tab and add
+                    new cards.
+                  </p>
+                )}
+              </>
+            )}
+          </>
+        )}
 
         <div className="flex justify-evenly mt-4 w-full">
           <Button

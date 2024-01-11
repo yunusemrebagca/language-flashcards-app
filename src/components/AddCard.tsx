@@ -30,6 +30,7 @@ export default function AddCard({ cardGroup }: { cardGroup: string }) {
   } = useForm<Inputs>();
 
   const addCardHook = useAddCard();
+  const { isPending, isSuccess } = addCardHook;
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
@@ -39,7 +40,6 @@ export default function AddCard({ cardGroup }: { cardGroup: string }) {
       set: cardGroup,
     });
   };
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -78,10 +78,14 @@ export default function AddCard({ cardGroup }: { cardGroup: string }) {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Add Flashcard</Button>
+            <Button type="submit" disabled={isPending}>
+              Add Flashcard
+            </Button>
             <DialogClose asChild>
               <div>
-                <Button variant="outline">Cancel</Button>
+                <Button type="button" variant="outline">
+                  Cancel
+                </Button>
               </div>
             </DialogClose>
           </DialogFooter>

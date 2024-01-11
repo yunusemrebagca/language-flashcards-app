@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { setSaved, setLiked, addCard } from "./api";
+import { setSaved, setLiked, addCard, deleteCard } from "./api";
 import { useQueryClient } from "@tanstack/react-query";
 
 export function useAddSaved() {
@@ -46,6 +46,25 @@ export function useAddCard() {
   return useMutation({
     mutationFn: (data: { word: string; description: string; set: string }) => {
       return addCard(data);
+    },
+    onSettled: (_, error, variables) => {
+      if (error) {
+        console.log(error);
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: ["language-cards"],
+        });
+      }
+    },
+  });
+}
+
+export function useDeleteCard() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number) => {
+      return deleteCard(id);
     },
     onSettled: (_, error, variables) => {
       if (error) {

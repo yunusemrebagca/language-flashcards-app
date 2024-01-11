@@ -16,7 +16,7 @@ export const useLanguageCards = () => {
 
 export const useLanguageCardsIds = () => {
   return useQuery({
-    queryKey: ["language-cards", "ids"],
+    queryKey: ["language-cards"],
     queryFn: getLanguageCardsId,
     refetchOnWindowFocus: false,
   });

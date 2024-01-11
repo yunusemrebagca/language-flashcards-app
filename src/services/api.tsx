@@ -1,7 +1,7 @@
 import axios from "axios";
 import { cardSet, languageCard } from "../types/api";
 
-const BASE_URL = "https://localhost:3000/api";
+const BASE_URL = "/api";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -53,4 +53,8 @@ export const addCard = async (data: {
   set: string;
 }) => {
   const response = await axiosInstance.post(`/language-cards/add-card`, data);
+};
+
+export const deleteCard = async (id: number) => {
+  const response = await axiosInstance.delete(`/language-cards/${id}/delete`);
 };
