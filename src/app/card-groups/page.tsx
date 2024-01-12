@@ -20,9 +20,9 @@ export default function Page() {
   }
 
   return (
-    <main className="flex-1 flex flex-col items-center justify-center">
+    <main className="flex-1 flex  flex-col my-16 items-center justify-center">
       <h1 className="text-3xl font-bold mb-8">Card Groups</h1>
-      <div className="grid grid-cols-4 grid-rows-1 gap-8 w-full max-w-4xl p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-4xl p-8">
         {cardSets
           ? cardSets?.map((cardSet) => (
               <CardGroup key={cardSet.id} cardSet={cardSet} />
@@ -32,7 +32,7 @@ export default function Page() {
           <AddCardSet />
         </div>
       </div>
-      <div className="flex items-center justify-between w-full max-w-md mt-8">
+      <div className="flex items-center justify-between w-full max-w-md mt-8 px-4">
         <Button variant="outline">Previous</Button>
         <Button variant="outline">Next</Button>
       </div>
