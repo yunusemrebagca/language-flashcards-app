@@ -12,8 +12,9 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useFormState } from "react-hook-form";
 import { useAddCard } from "@/services/mutations";
+import { useCardStore } from "./CardSet";
 
 type Inputs = {
   word: string;
@@ -26,19 +27,23 @@ export default function AddCard({ cardGroup }: { cardGroup: string }) {
     register,
     handleSubmit,
     watch,
+    resetField,
+    setFocus,
     formState: { errors },
   } = useForm<Inputs>();
 
   const addCardHook = useAddCard();
   const { isPending, isSuccess } = addCardHook;
 
+  const { setCurrentCount } = useCardStore();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     addCardHook.mutate({
       word: data.word,
       description: data.description,
       set: cardGroup,
     });
+    setFocus("word");
   };
   return (
     <Dialog>

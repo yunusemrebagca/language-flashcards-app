@@ -15,6 +15,7 @@ import CardSkeleton from "./CardSkeleton";
 import { getLanguageCardById } from "@/services/api";
 import { useSearchParams } from "next/navigation";
 import parameterize from "parameterize-js";
+import { useEffect } from "react";
 
 interface cardState {
   currentCount: number;
@@ -83,7 +84,15 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
       ? cardSet[0].card_set_name
       : "All Flashcards";
 
-  const { currentCount, prev, next } = useCardStore();
+  const { currentCount, prev, next, setCurrentCount } = useCardStore();
+
+  useEffect(() => {
+    if (data && data[currentCount] && currentCount >= data.length - 1) {
+      setCurrentCount(data.length - 1);
+    } else {
+      setCurrentCount(0);
+    }
+  }, []);
 
   return (
     <>
@@ -93,7 +102,7 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
           <Card cardData={data[currentCount]} setLength={data.length} />
         ) : (
           <>
-            <CardSkeleton />{" "}
+            {data && data.length === 0 ? null : <CardSkeleton />}
             {data && data.length === 0 && (
               <>
                 <h4 className="text-red-400 text-xl">

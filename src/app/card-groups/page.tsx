@@ -22,7 +22,7 @@ export default function Page() {
   return (
     <main className="flex-1 flex flex-col items-center justify-center">
       <h1 className="text-3xl font-bold mb-8">Card Groups</h1>
-      <div className="grid grid-cols-4  gap-8 w-full max-w-4xl p-8">
+      <div className="grid grid-cols-4 grid-rows-1 gap-8 w-full max-w-4xl p-8">
         {cardSets
           ? cardSets?.map((cardSet) => (
               <CardGroup key={cardSet.id} cardSet={cardSet} />

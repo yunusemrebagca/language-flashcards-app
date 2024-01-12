@@ -20,9 +20,9 @@ export default function CardGroup({ cardSet }: { cardSet: cardSet }) {
               </Button>
             </Link>
             <Button
-              onClick={() =>
-                useDeleteCardSetMutation.mutate({ id: cardSet.id })
-              }
+              onClick={(e) => {
+                useDeleteCardSetMutation.mutate({ id: cardSet.id });
+              }}
               variant="destructive"
               className="w-full"
               disabled={useDeleteCardSetMutation.isPending}
