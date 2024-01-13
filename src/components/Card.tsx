@@ -26,7 +26,7 @@ export default function Card({
     <div className="group h-64 w-full [perspective:1000px]">
       <div
         className={cn(
-          " relative h-full bg-white w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d]",
+          " relative h-full bg-white sm:w-full rounded-xl shadow-xl mx-auto w-[96%] transition-all duration-500 [transform-style:preserve-3d]",
           {
             "[transform:rotateY(-180deg)]": isFlipped,
           }
@@ -35,12 +35,15 @@ export default function Card({
         <div className="flex flex-col justify-between  items-center h-full w-full scale-x-[-1]">
           <div className="flex flex-col justify-between py-16 items-center h-full w-full">
             <div className="flex flex-col mb-8 justify-center items-center">
-              <h2 className="text-2xl font-bold mb-4">{cardData.word}</h2>
+              <h2 className="sm:text-2xl text-xl font-bold mb-4">
+                {cardData.word}
+              </h2>
             </div>
-            <div className="flex items-center justify-center space-x-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-0 sm:flex sm:items-center sm:justify-center  sm:space-x-4 ">
               <Button
                 onClick={() => setIsFlipped(!isFlipped)}
                 variant="outline"
+                size={"card"}
               >
                 Reveal
               </Button>
@@ -52,6 +55,7 @@ export default function Card({
                   })
                 }
                 variant={cardData.saved ? "saved" : "outline"}
+                size={"card"}
               >
                 {cardData.saved ? "Saved" : "Save"}
               </Button>
@@ -62,6 +66,7 @@ export default function Card({
                     liked: !cardData.liked,
                   })
                 }
+                size={"card"}
                 variant={cardData.liked ? "destructive" : "outline"}
               >
                 {cardData.liked ? "Liked" : "Like"}
@@ -76,6 +81,7 @@ export default function Card({
                   useDeleteCardMutation.mutate(cardData.id);
                 }}
                 disabled={useDeleteCardMutation.isPending}
+                size={"card"}
               >
                 Delete
               </Button>
@@ -90,7 +96,7 @@ export default function Card({
                 {cardData.description}
               </h2>
             </div>
-            <div className="flex items-center justify-center space-x-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-0 sm:flex sm:items-center sm:justify-center space-x-2 sm:space-x-4 ">
               <Button
                 onClick={() => setIsFlipped(!isFlipped)}
                 variant="outline"

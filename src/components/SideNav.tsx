@@ -62,7 +62,11 @@ export default function SideNav() {
           <li>
             <Link href={"/"}>
               {showMenu ? (
-                <Button className="w-full" variant="outline">
+                <Button
+                  className="w-full"
+                  variant="outline"
+                  onClick={() => setShowMenu(false)}
+                >
                   Home
                 </Button>
               ) : (
@@ -75,7 +79,11 @@ export default function SideNav() {
           <li>
             <Link href={"/card-groups"}>
               {showMenu ? (
-                <Button className="w-full" variant="outline">
+                <Button
+                  className="w-full"
+                  variant="outline"
+                  onClick={() => setShowMenu(false)}
+                >
                   Card Groups
                 </Button>
               ) : (
@@ -91,6 +99,7 @@ export default function SideNav() {
                 <Button
                   className="w-full bg-red-500 text-white"
                   variant="outline"
+                  onClick={() => setShowMenu(false)}
                 >
                   Liked Cards
                 </Button>
@@ -110,6 +119,7 @@ export default function SideNav() {
                 <Button
                   className="w-full bg-green-500 text-white"
                   variant="outline"
+                  onClick={() => setShowMenu(false)}
                 >
                   Saved Cards
                 </Button>

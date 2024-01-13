@@ -20,8 +20,10 @@ export default function Page() {
   }
 
   return (
-    <main className="flex-1 flex  flex-col my-16 items-center justify-center">
-      <h1 className="text-3xl font-bold mb-8">Card Groups</h1>
+    <main className="flex-1 flex  flex-col my-16 sm:my-16 items-center justify-center">
+      <h1 className="sm:text-3xl text-2xl font-bold mb-4 sm:mb-8">
+        Card Groups
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-4xl p-8">
         {cardSets
           ? cardSets?.map((cardSet) => (

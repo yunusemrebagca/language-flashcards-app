@@ -64,13 +64,13 @@ export default function AddCard() {
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className=" gap-2 sm:gap-0">
             <Button type="submit" disabled={isPending}>
               Add Card Set
             </Button>
             <DialogClose asChild>
               <div>
-                <Button type="button" variant="outline">
+                <Button type="button" className="w-full" variant="outline">
                   Cancel
                 </Button>
               </div>

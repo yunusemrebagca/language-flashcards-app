@@ -82,13 +82,13 @@ export default function AddCard({ cardGroup }: { cardGroup: string }) {
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="flex gap-2 sm:gap-0">
             <Button type="submit" disabled={isPending}>
               Add Flashcard
             </Button>
             <DialogClose asChild>
               <div>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" className="w-full">
                   Cancel
                 </Button>
               </div>

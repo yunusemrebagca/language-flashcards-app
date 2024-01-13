@@ -96,7 +96,7 @@ export default function CardSet({ cardGroupName }: { cardGroupName?: string }) {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4 ">{setName}</h1>
+      <h1 className="sm:text-3xl text-2xl font-bold mb-4 ">{setName}</h1>
       <div className="flex flex-col gap-4 items-center justify-between w-full max-w-sm mt-4">
         {data && data[currentCount] ? (
           <Card cardData={data[currentCount]} setLength={data.length} />
