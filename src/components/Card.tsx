@@ -92,11 +92,11 @@ export default function Card({
         <div className="absolute inset-0 h-full w-full rounded-xl bg-white px-12 text-center [backface-visibility:hidden]">
           <div className="flex flex-col justify-between py-16 items-center h-full w-full">
             <div className="flex flex-col mb-8 justify-center items-center">
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="sm:text-2xl text-xl font-bold mb-4">
                 {cardData.description}
               </h2>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:gap-0 sm:flex sm:items-center sm:justify-center space-x-2 sm:space-x-4 ">
+            <div className="grid grid-cols-2 gap-2 sm:gap-0 sm:flex sm:items-center sm:justify-center  sm:space-x-4 ">
               <Button
                 onClick={() => setIsFlipped(!isFlipped)}
                 variant="outline"

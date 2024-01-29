@@ -15,7 +15,7 @@ export default function CardGroup({ cardSet }: { cardSet: cardSet }) {
         <div className="flex items-center justify-center space-x-4">
           <div className="flex flex-col gap-2">
             <Link href={`/card-groups?card-group=${cardSet.card_set}`}>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" size="sm" className="w-full">
                 View Group
               </Button>
             </Link>
@@ -26,6 +26,7 @@ export default function CardGroup({ cardSet }: { cardSet: cardSet }) {
               variant="destructive"
               className="w-full"
               disabled={useDeleteCardSetMutation.isPending}
+              size="sm"
             >
               Delete Group
             </Button>

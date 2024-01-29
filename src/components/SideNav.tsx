@@ -30,7 +30,7 @@ export default function SideNav() {
     <aside
       className={cn(
         isMobile
-          ? "fixed z-50 top-0 bottom-0 h-screen flex w-full flex-col justify-between transition-all duration-500 dark:bg-gray-800 px-8 overflow-x-hidden"
+          ? "fixed z-50 top-0 bottom-0 h-full flex w-full flex-col justify-between transition-all duration-500 dark:bg-gray-800 px-8 overflow-x-hidden"
           : " bg-white flex h-screen sticky top-0 flex-col justify-between transition-all duration-500 dark:bg-gray-800 px-8 overflow-x-hidden",
         showMenu ? "w-64" : "w-20 px-1 items-center ",
         !isMobile || showMenu ? "bg-white" : "bg-transparent"
@@ -138,7 +138,7 @@ export default function SideNav() {
       <div
         className={cn(
           "flex items-center justify-between pb-8 ",
-          isMobile && "hidden"
+          !showMenu && isMobile && "hidden"
         )}
       >
         <img
