@@ -2,35 +2,32 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+To start, you can connect your own database with [vercel](https://vercel.com/) serverless postgresgl.\
+Or you can use another database and api for site with a modification to the services. You can use the [dbml](https://dbdiagram.io/d/Language-Flashcards-App-659b12c8ac844320ae694ba5) to create a database schema.
+
+Run the development server:\
+(Also you should add --experimental-https in the dev script in the package.json if you are using HTTPS.)
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Live Preview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[Live Preview](https://language-flashcards-app.vercel.app/)
 
-## Learn More
+## Used Technologies
 
-To learn more about Next.js, take a look at the following resources:
+- vercel serverless postgresql
+- tailwindcss
+- shadcn ui
+- api routes
+- react query (for server state management)
+- axios
+- zustand (for client state management)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database Schema
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[dbml for database schema](https://dbdiagram.io/d/Language-Flashcards-App-659b12c8ac844320ae694ba5)
